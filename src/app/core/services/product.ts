@@ -19,8 +19,8 @@ export class ProductService {
       stock: 12,
       categoryId: 1,
       categoryName: 'Periféricos',
-      imageUrl: 'https://placehold.co/400x260?text=Teclado+RGB'
-    },
+      imageUrl: 'images/Teclado+rgb.png'
+    },  
     {
       id: 2,
       name: 'Monitor IPS 24 pulgadas',
@@ -29,7 +29,7 @@ export class ProductService {
       stock: 5,
       categoryId: 2,
       categoryName: 'Monitores',
-      imageUrl: 'https://placehold.co/400x260?text=Monitor+24'
+      imageUrl: 'images/monitor24pulgadas.png'
     },
     {
       id: 3,
@@ -39,7 +39,7 @@ export class ProductService {
       stock: 18,
       categoryId: 1,
       categoryName: 'Periféricos',
-      imageUrl: 'https://placehold.co/400x260?text=Mouse+Pro'
+      imageUrl: 'images/mouseinalambrico.png'
     },
     {
       id: 4,
@@ -49,7 +49,7 @@ export class ProductService {
       stock: 0,
       categoryId: 3,
       categoryName: 'Audio',
-      imageUrl: 'https://placehold.co/400x260?text=Audifonos'
+      imageUrl: 'images/audifonos.png'
     },
     {
       id: 5,
@@ -59,7 +59,7 @@ export class ProductService {
       stock: 3,
       categoryId: 2,
       categoryName: 'Monitores',
-      imageUrl: 'https://placehold.co/400x260?text=Monitor+27'
+      imageUrl: 'images/monitorcurvo.png'
     }
   ];
 
