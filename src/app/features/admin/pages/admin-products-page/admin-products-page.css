@@ -1,3 +1,4 @@
+/* Encabezado y acción principal de la administración de productos. */
 .admin-section {
   max-width: 1100px;
   margin: 0 auto;
@@ -21,6 +22,7 @@
   cursor: pointer;
 }
 
+/* Tabla adaptable que contiene el listado y sus acciones. */
 .table-wrapper {
   width: 100%;
   overflow-x: auto;

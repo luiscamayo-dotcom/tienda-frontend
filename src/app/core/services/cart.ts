@@ -3,10 +3,12 @@ import { CartItem, Product } from '../models/marketplace.model';
 
 @Injectable({ providedIn: 'root' })
 export class CartService {
+  // El estado reactivo del carrito alimenta tanto la lista como sus totales.
   private readonly cartItems = signal<CartItem[]>([]);
 
   readonly items = this.cartItems.asReadonly();
 
+  // Calcula los totales a partir de las cantidades actuales, sin duplicar estado.
   readonly totalItems = computed(() =>
     this.cartItems().reduce((acc, item) => acc + item.quantity, 0)
   );
@@ -16,6 +18,7 @@ export class CartService {
   );
 
   addItem(product: Product, quantity = 1): void {
+    // Evita cantidades inválidas y limita cada producto al stock disponible.
     if (product.stock <= 0 || quantity <= 0) return;
 
     this.cartItems.update((current) => {
@@ -35,6 +38,7 @@ export class CartService {
   }
 
   updateQuantity(productId: number, quantity: number): void {
+    // Una cantidad cero elimina la línea; las demás se ajustan al inventario.
     if (quantity <= 0) {
       this.removeItem(productId);
       return;

@@ -1,3 +1,4 @@
+/* Distribución del detalle del producto y su contenido principal. */
 .detail-container {
   max-width: 1000px;
   margin: 0 auto;
@@ -43,6 +44,7 @@
   display: block;
 }
 
+/* Precio, descripción y disponibilidad del producto. */
 .category-badge {
   display: inline-block;
   background-color: #e0f2fe;
@@ -92,6 +94,7 @@
   background-color: #fee2e2;
 }
 
+/* Selector de cantidad y acción para agregar al carrito. */
 .purchase-controls {
   display: flex;
   flex-wrap: wrap;
@@ -197,6 +200,7 @@
   font-weight: 600;
 }
 
+/* Ajustes de distribución para pantallas pequeñas. */
 @media (max-width: 768px) {
   .detail-card {
     grid-template-columns: 1fr;

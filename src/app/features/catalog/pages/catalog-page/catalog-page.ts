@@ -12,15 +12,18 @@ import { Category, Product, ProductFilterCriteria } from '../../../../core/model
   styleUrl: './catalog-page.css'
 })
 export class CatalogPage implements OnInit {
+  // Servicios para consultar productos y añadirlos al carrito.
   private readonly productService = inject(ProductService);
   private readonly cartService = inject(CartService);
 
+  // Estado de la vista: datos originales, resultados visibles y carga.
   allProducts: Product[] = [];
   filteredProducts = signal<Product[]>([]);
   categories: Category[] = [];
   isLoading = signal(true);
 
   ngOnInit(): void {
+    // Prepara categorías y productos al iniciar la página.
     this.categories = this.productService.getCategories();
     setTimeout(() => {
       this.allProducts = this.productService.getProducts();
@@ -30,6 +33,7 @@ export class CatalogPage implements OnInit {
   }
 
   applyFilters(criteria: ProductFilterCriteria): void {
+    // Combina los criterios recibidos y actualiza la lista mostrada.
     const term = criteria.searchTerm.toLowerCase();
 
     const results = this.allProducts.filter((product) => {
@@ -54,6 +58,7 @@ export class CatalogPage implements OnInit {
   }
 
   onAddToCart(productId: number): void {
+    // Busca el producto seleccionado y lo agrega si continúa disponible.
     const product = this.productService.getProductById(productId);
     if (product) {
       this.cartService.addItem(product, 1);

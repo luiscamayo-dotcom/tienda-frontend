@@ -8,6 +8,7 @@ import { CartItem } from '../../../../core/models/marketplace.model';
   styleUrl: './cart-item-row.css'
 })
 export class CartItemRow {
+  // Recibe la línea del carrito y emite cambios para que la página los gestione.
   item = input.required<CartItem>();
   quantityChange = output<{ productId: number; quantity: number }>();
   remove = output<number>();

@@ -3,6 +3,7 @@ import { CartItem, Order } from '../models/marketplace.model';
 
 @Injectable({ providedIn: 'root' })
 export class OrderService {
+  // Estado compartido de pedidos, inicializado con un ejemplo para la aplicación.
   private readonly ordersState = signal<Order[]>([
     {
       id: 1024,
@@ -20,6 +21,7 @@ export class OrderService {
   readonly orders = this.ordersState.asReadonly();
 
   createOrder(customerName: string, address: string, cartItems: CartItem[], total: number): Order {
+    // Convierte las líneas del carrito en un pedido y lo agrega al historial.
     const newOrder: Order = {
       id: Math.floor(1030 + Math.random() * 900),
       customerName,
@@ -40,6 +42,7 @@ export class OrderService {
   }
 
   updateOrderStatus(orderId: number, status: Order['status']): void {
+    // Actualiza el estado del pedido indicado sin modificar los demás.
     this.ordersState.update((current) =>
       current.map((order) => (order.id === orderId ? { ...order, status } : order))
     );

@@ -1,11 +1,13 @@
 <section class="catalog-container">
   <h2>Catálogo de Productos</h2>
 
+  <!-- Filtros emiten criterios que actualizan los productos mostrados. -->
   <app-catalog-filters
     [categories]="categories"
     (filtersChange)="applyFilters($event)"
   />
 
+  <!-- Estados de carga y resultados del catálogo. -->
   @if (isLoading()) {
     <p class="status-message">Cargando productos del catálogo...</p>
   } @else {

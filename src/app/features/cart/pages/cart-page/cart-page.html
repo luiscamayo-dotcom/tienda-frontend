@@ -1,6 +1,7 @@
 <section class="cart-container">
   <h2>Carrito de Compras</h2>
 
+  <!-- Vistas alternativas según el estado de confirmación o del carrito. -->
   @if (confirmedOrder(); as order) {
     <div class="confirmation-box">
       <h3>¡Pedido #{{ order.id }} confirmado con éxito!</h3>
@@ -17,6 +18,7 @@
       <a routerLink="/catalogo" class="btn-primary">Ir al catálogo de productos</a>
     </div>
   } @else {
+    <!-- Productos seleccionados junto al resumen y formulario de entrega. -->
     <div class="cart-layout">
       <div class="cart-items-list">
         @for (cartItem of cartService.items(); track cartItem.product.id) {

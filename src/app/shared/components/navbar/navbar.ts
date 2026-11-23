@@ -9,5 +9,6 @@ import { CartService } from '../../../core/services/cart';
   styleUrl: './navbar.css'
 })
 export class Navbar {
+  // Expone el conteo del carrito para mantener actualizado el enlace de navegación.
   readonly cartService = inject(CartService);
 }

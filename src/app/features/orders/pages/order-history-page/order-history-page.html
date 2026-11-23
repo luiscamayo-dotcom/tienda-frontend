@@ -1,6 +1,7 @@
 <section class="orders-section">
   <h2>Mis Pedidos</h2>
 
+  <!-- Historial con detalle de cada pedido y estado actual de entrega. -->
   <div class="orders-list">
     @for (order of orderService.orders(); track order.id) {
       <article class="order-card">

@@ -1,3 +1,4 @@
+/* Barra flexible que agrupa los criterios para filtrar el catálogo. */
 .filters-bar {
   display: flex;
   flex-wrap: wrap;

@@ -1,9 +1,11 @@
 <article class="product-card">
+  <!-- Imagen, categoría y datos principales del producto. -->
   <div class="image-wrapper">
     <img [src]="product().imageUrl" [alt]="product().name" />
     <span class="category-badge">{{ product().categoryName }}</span>
   </div>
 
+  <!-- Precio, disponibilidad y accesos al detalle o al carrito. -->
   <div class="card-body">
     <h3>{{ product().name }}</h3>
     <p class="description">{{ product().description }}</p>

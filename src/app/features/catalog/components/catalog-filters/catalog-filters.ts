@@ -9,6 +9,7 @@ import { Category, ProductFilterCriteria } from '../../../../core/models/marketp
   styleUrl: './catalog-filters.css'
 })
 export class CatalogFilters {
+  // Recibe las categorías y entrega a la página los criterios seleccionados.
   categories = input.required<Category[]>();
   filtersChange = output<ProductFilterCriteria>();
 
@@ -18,6 +19,7 @@ export class CatalogFilters {
   maxPrice: number | null = null;
 
   emitFilters(): void {
+    // Publica una copia normalizada de los valores actuales del formulario.
     this.filtersChange.emit({
       searchTerm: this.searchTerm.trim(),
       categoryId: this.selectedCategoryId,
@@ -27,6 +29,7 @@ export class CatalogFilters {
   }
 
   resetFilters(): void {
+    // Restablece todos los criterios y actualiza los resultados del catálogo.
     this.searchTerm = '';
     this.selectedCategoryId = null;
     this.minPrice = null;

@@ -1,3 +1,4 @@
+// Tipos compartidos para representar el catálogo, los filtros, el carrito y los pedidos.
 export interface Category {
   id: number;
   name: string;
@@ -37,6 +38,8 @@ export interface Order {
   total: number;
   items: OrderItem[];
 }
+
+// Relaciona un producto del catálogo con la cantidad seleccionada en el carrito.
 export interface CartItem {
   product: Product;
   quantity: number;

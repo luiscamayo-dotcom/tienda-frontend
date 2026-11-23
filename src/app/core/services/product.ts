@@ -3,6 +3,7 @@ import { Category, Product } from '../models/marketplace.model';
 
 @Injectable({ providedIn: 'root' })
 export class ProductService {
+  // Datos de ejemplo que alimentan el catálogo y sus categorías.
   private readonly categories: Category[] = [
     { id: 1, name: 'Periféricos' },
     { id: 2, name: 'Monitores' },
@@ -75,6 +76,7 @@ export class ProductService {
   }
 
   addProduct(data: Omit<Product, 'id' | 'categoryName'>): void {
+    // Asigna un identificador y completa el nombre de categoría antes de guardar.
     const category = this.categories.find((c) => c.id === data.categoryId);
     const nextId = Math.max(0, ...this.products.map((p) => p.id)) + 1;
     this.products.push({
@@ -85,6 +87,7 @@ export class ProductService {
   }
 
   updateProduct(id: number, data: Omit<Product, 'id' | 'categoryName'>): void {
+    // Reemplaza el producto existente y sincroniza el nombre de su categoría.
     const index = this.products.findIndex((p) => p.id === id);
     if (index === -1) return;
     const category = this.categories.find((c) => c.id === data.categoryId);

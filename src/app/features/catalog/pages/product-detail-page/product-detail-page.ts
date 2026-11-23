@@ -12,15 +12,18 @@ import { Product } from '../../../../core/models/marketplace.model';
   styleUrl: './product-detail-page.css'
 })
 export class ProductDetailPage implements OnInit {
+  // Dependencias para leer la ruta, consultar el producto y gestionar el carrito.
   private readonly route = inject(ActivatedRoute);
   private readonly productService = inject(ProductService);
   private readonly cartService = inject(CartService);
 
+  // Estado que consume la plantilla para mostrar producto y acciones de compra.
   product = signal<Product | undefined>(undefined);
   quantity = signal(1);
   addedFeedback = signal(false);
 
   ngOnInit(): void {
+    // Obtiene el identificador de la URL y carga el producto asociado.
     const idParam = Number(this.route.snapshot.paramMap.get('id'));
     if (!Number.isNaN(idParam)) {
       this.product.set(this.productService.getProductById(idParam));
@@ -28,6 +31,7 @@ export class ProductDetailPage implements OnInit {
   }
 
   changeQuantity(delta: number): void {
+    // Mantiene la cantidad dentro del rango permitido por las existencias.
     const currentProduct = this.product();
     if (!currentProduct) return;
 
@@ -38,6 +42,7 @@ export class ProductDetailPage implements OnInit {
   }
 
   addToCart(): void {
+    // Agrega la selección y activa temporalmente la confirmación visual.
     const currentProduct = this.product();
     if (!currentProduct || currentProduct.stock === 0) return;
 

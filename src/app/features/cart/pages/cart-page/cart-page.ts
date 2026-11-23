@@ -13,14 +13,17 @@ import { CartItemRow } from '../../components/cart-item-row/cart-item-row';
   styleUrl: './cart-page.css'
 })
 export class CartPage {
+  // Servicios que gestionan el carrito y el registro de pedidos.
   private readonly fb = inject(FormBuilder);
   private readonly orderService = inject(OrderService);
   readonly cartService = inject(CartService);
 
+  // Estado de envío y resultado que controla las respuestas visibles en la página.
   isSubmitting = signal(false);
   submitError = signal<string | null>(null);
   confirmedOrder = signal<Order | null>(null);
 
+  // Datos de entrega con validaciones para aceptar una confirmación.
   deliveryForm = this.fb.nonNullable.group({
     customerName: ['', [Validators.required, Validators.minLength(3)]],
     address: ['', [Validators.required, Validators.minLength(8)]],
@@ -41,6 +44,7 @@ export class CartPage {
   }
 
   confirmOrder(): void {
+    // Revisa el formulario y el contenido antes de crear el pedido.
     if (this.deliveryForm.invalid) {
       this.deliveryForm.markAllAsTouched();
       return;

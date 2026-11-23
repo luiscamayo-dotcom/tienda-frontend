@@ -10,5 +10,6 @@ import { OrderService } from '../../../../core/services/order';
   styleUrl: './order-history-page.css'
 })
 export class OrderHistoryPage {
+  // El historial se comparte con las páginas de compra y administración.
   readonly orderService = inject(OrderService);
 }

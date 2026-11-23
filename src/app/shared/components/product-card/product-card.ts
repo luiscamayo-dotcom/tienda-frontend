@@ -10,6 +10,7 @@ import { Product } from '../../../core/models/marketplace.model';
   styleUrl: './product-card.css'
 })
 export class ProductCard {
+  // Recibe el producto que representa y emite la solicitud de agregarlo al carrito.
   product = input.required<Product>();
   addToCart = output<number>();
 }

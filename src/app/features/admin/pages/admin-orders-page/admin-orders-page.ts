@@ -10,9 +10,11 @@ import { Order } from '../../../../core/models/marketplace.model';
   styleUrl: './admin-orders-page.css'
 })
 export class AdminOrdersPage {
+  // Servicio compartido para mostrar pedidos y propagar cambios de estado.
   readonly orderService = inject(OrderService);
 
   onStatusChange(orderId: number, event: Event): void {
+    // Lee la opción elegida y la aplica al pedido correspondiente.
     const newStatus = (event.target as HTMLSelectElement).value as Order['status'];
     this.orderService.updateOrderStatus(orderId, newStatus);
   }

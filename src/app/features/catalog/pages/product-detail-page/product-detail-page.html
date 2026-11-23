@@ -1,6 +1,7 @@
 <section class="detail-container">
   <a routerLink="/catalogo" class="back-link">← Volver al catálogo</a>
 
+  <!-- Detalle, disponibilidad y controles de compra del producto solicitado. -->
   @if (product(); as item) {
     <div class="detail-card">
       <div class="image-box">
@@ -60,6 +61,7 @@
       </div>
     </div>
   } @else {
+    <!-- Alternativa cuando el identificador de ruta no corresponde a un producto. -->
     <div class="not-found-card">
       <h3>Producto no encontrado</h3>
       <p>El artículo que buscas no existe o fue retirado del catálogo.</p>

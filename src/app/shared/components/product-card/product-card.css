@@ -1,3 +1,4 @@
+/* Tarjeta reutilizable que resume un producto y sus acciones. */
 .product-card {
   display: flex;
   flex-direction: column;
@@ -15,6 +16,7 @@
   box-shadow: 0 10px 20px rgba(15, 23, 42, 0.1);
 }
 
+/* Imagen del producto y etiqueta superpuesta de categoría. */
 .image-wrapper {
   position: relative;
   width: 100%;
@@ -41,6 +43,7 @@
   border-radius: 999px;
 }
 
+/* Datos, disponibilidad y acciones ubicados en la base de la tarjeta. */
 .card-body {
   display: flex;
   flex-direction: column;

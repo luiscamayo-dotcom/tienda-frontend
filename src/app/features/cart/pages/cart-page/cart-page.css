@@ -1,3 +1,4 @@
+/* Estructura principal para los artículos y el resumen del carrito. */
 .cart-container {
   max-width: 1100px;
   margin: 0 auto;
@@ -48,6 +49,7 @@
   border-top: 1px solid #e2e8f0;
 }
 
+/* Presentación de los datos de entrega y mensajes de validación. */
 .delivery-form {
   display: flex;
   flex-direction: column;
@@ -116,6 +118,7 @@
   cursor: not-allowed;
 }
 
+/* Estados visuales para carrito vacío y pedido confirmado. */
 .empty-cart {
   padding: 3rem 1.5rem;
   text-align: center;

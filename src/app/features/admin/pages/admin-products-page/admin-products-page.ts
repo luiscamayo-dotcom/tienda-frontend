@@ -7,6 +7,7 @@ import { Component } from '@angular/core';
   styleUrl: './admin-products-page.css'
 })
 export class AdminProductsPage {
+  // Lista de ejemplo que se presenta en la tabla de administración.
   products = [
     { id: 1, name: 'Teclado Mecánico RGB', category: 'Periféricos', price: 240000, stock: 12 },
     { id: 2, name: 'Monitor IPS 24 pulgadas', category: 'Monitores', price: 680000, stock: 5 }
