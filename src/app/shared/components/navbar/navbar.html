@@ -1,0 +1,13 @@
+<header class="navbar">
+  <a routerLink="/catalogo" class="brand">MiMarketplace</a>
+
+  <nav class="nav-links">
+    <a routerLink="/catalogo" routerLinkActive="active">Catálogo</a>
+    <a routerLink="/carrito" routerLinkActive="active">
+      Carrito ({{ cartService.totalItems() }})
+    </a>
+    <a routerLink="/mis-pedidos" routerLinkActive="active">Mis Pedidos</a>
+    <a routerLink="/admin/pedidos" routerLinkActive="active">Admin Pedidos</a>
+    <a routerLink="/admin/productos" routerLinkActive="active">Admin Productos</a>
+  </nav>
+</header>

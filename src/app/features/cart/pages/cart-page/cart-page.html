@@ -1,0 +1,84 @@
+<section class="cart-container">
+  <h2>Carrito de Compras</h2>
+
+  @if (confirmedOrder(); as order) {
+    <div class="confirmation-box">
+      <h3>¡Pedido #{{ order.id }} confirmado con éxito!</h3>
+      <p>Destinatario: <strong>{{ order.customerName }}</strong> · Entrega en: {{ order.address }}</p>
+      <p>Total registrado: <strong>$ {{ order.total }}</strong></p>
+      <div class="confirmation-actions">
+        <a routerLink="/mis-pedidos" class="btn-primary">Ver en Mis Pedidos</a>
+        <a routerLink="/catalogo" class="btn-secondary">Seguir comprando</a>
+      </div>
+    </div>
+  } @else if (cartService.items().length === 0) {
+    <div class="empty-cart">
+      <p>Tu carrito está vacío en este momento.</p>
+      <a routerLink="/catalogo" class="btn-primary">Ir al catálogo de productos</a>
+    </div>
+  } @else {
+    <div class="cart-layout">
+      <div class="cart-items-list">
+        @for (cartItem of cartService.items(); track cartItem.product.id) {
+          <app-cart-item-row
+            [item]="cartItem"
+            (quantityChange)="onUpdateQuantity($event)"
+            (remove)="onRemoveItem($event)"
+          />
+        }
+      </div>
+
+      <aside class="summary-card">
+        <h3>Resumen y Datos de Entrega</h3>
+        <div class="summary-row">
+          <span>Unidades:</span>
+          <strong>{{ cartService.totalItems() }}</strong>
+        </div>
+        <div class="summary-row total">
+          <span>Total a pagar:</span>
+          <strong>$ {{ cartService.totalAmount() }}</strong>
+        </div>
+
+        <form [formGroup]="deliveryForm" (ngSubmit)="confirmOrder()" class="delivery-form">
+          <div class="form-field">
+            <label for="customerName">Nombre completo</label>
+            <input id="customerName" type="text" formControlName="customerName" placeholder="Ej. Ana Martínez" />
+            @if (hasError('customerName', 'required')) {
+              <small class="error-text">El nombre del destinatario es obligatorio.</small>
+            } @else if (hasError('customerName', 'minlength')) {
+              <small class="error-text">Ingresa al menos 3 caracteres.</small>
+            }
+          </div>
+
+          <div class="form-field">
+            <label for="address">Dirección de entrega</label>
+            <input id="address" type="text" formControlName="address" placeholder="Ej. Carrera 10 # 24-15" />
+            @if (hasError('address', 'required')) {
+              <small class="error-text">La dirección de entrega es obligatoria.</small>
+            } @else if (hasError('address', 'minlength')) {
+              <small class="error-text">Detalla mejor la dirección (mínimo 8 caracteres).</small>
+            }
+          </div>
+
+          <div class="form-field">
+            <label for="phone">Teléfono de contacto</label>
+            <input id="phone" type="tel" formControlName="phone" placeholder="Ej. 3001234567" />
+            @if (hasError('phone', 'required')) {
+              <small class="error-text">El teléfono es obligatorio.</small>
+            } @else if (hasError('phone', 'pattern')) {
+              <small class="error-text">Debe contener entre 7 y 10 dígitos numéricos.</small>
+            }
+          </div>
+
+          @if (submitError()) {
+            <p class="alert-error">{{ submitError() }}</p>
+          }
+
+          <button type="submit" class="btn-submit" [disabled]="isSubmitting()">
+            {{ isSubmitting() ? 'Procesando pedido...' : 'Confirmar pedido' }}
+          </button>
+        </form>
+      </aside>
+    </div>
+  }
+</section>

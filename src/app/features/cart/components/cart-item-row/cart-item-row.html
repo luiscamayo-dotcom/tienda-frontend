@@ -1,0 +1,31 @@
+<article class="cart-row">
+  <div class="item-info">
+    <h4>{{ item().product.name }}</h4>
+    <p class="unit-price">Precio unitario: $ {{ item().product.price }}</p>
+    <small>Stock máximo: {{ item().product.stock }}</small>
+  </div>
+
+  <div class="item-controls">
+    <button
+      type="button"
+      (click)="quantityChange.emit({ productId: item().product.id, quantity: item().quantity - 1 })"
+    >
+      -
+    </button>
+    <span>{{ item().quantity }}</span>
+    <button
+      type="button"
+      [disabled]="item().quantity >= item().product.stock"
+      (click)="quantityChange.emit({ productId: item().product.id, quantity: item().quantity + 1 })"
+    >
+      +
+    </button>
+  </div>
+
+  <div class="item-subtotal">
+    <strong>$ {{ item().product.price * item().quantity }}</strong>
+    <button type="button" class="btn-remove" (click)="remove.emit(item().product.id)">
+      Eliminar
+    </button>
+  </div>
+</article>

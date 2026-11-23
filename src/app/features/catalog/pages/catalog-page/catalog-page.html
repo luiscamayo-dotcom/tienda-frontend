@@ -1,0 +1,27 @@
+<section class="catalog-container">
+  <h2>Catálogo de Productos</h2>
+
+  <app-catalog-filters
+    [categories]="categories"
+    (filtersChange)="applyFilters($event)"
+  />
+
+  @if (isLoading()) {
+    <p class="status-message">Cargando productos del catálogo...</p>
+  } @else {
+    <p class="results-count">Mostrando {{ filteredProducts().length }} producto(s)</p>
+
+    <div class="catalog-grid">
+      @for (item of filteredProducts(); track item.id) {
+        <app-product-card
+          [product]="item"
+          (addToCart)="onAddToCart($event)"
+        />
+      } @empty {
+        <div class="empty-results">
+          <p>No se encontraron productos que coincidan con tu búsqueda o filtros.</p>
+        </div>
+      }
+    </div>
+  }
+</section>

@@ -1,0 +1,69 @@
+<section class="detail-container">
+  <a routerLink="/catalogo" class="back-link">← Volver al catálogo</a>
+
+  @if (product(); as item) {
+    <div class="detail-card">
+      <div class="image-box">
+        <img [src]="item.imageUrl" [alt]="item.name" />
+      </div>
+
+      <div class="info-box">
+        <span class="category-badge">{{ item.categoryName }}</span>
+        <h2>{{ item.name }}</h2>
+        <p class="price">$ {{ item.price | number:'1.0-0' }}</p>
+        <p class="description">{{ item.description }}</p>
+
+        <div class="stock-row">
+          <span class="stock-badge" [class.out]="item.stock === 0">
+            @if (item.stock > 0) {
+              Disponible · {{ item.stock }} unidades en inventario
+            } @else {
+              Producto agotado
+            }
+          </span>
+        </div>
+
+        @if (item.stock > 0) {
+          <div class="purchase-controls">
+            <div class="quantity-selector">
+              <button
+                type="button"
+                (click)="changeQuantity(-1)"
+                [disabled]="quantity() <= 1"
+              >
+                -
+              </button>
+              <span>{{ quantity() }}</span>
+              <button
+                type="button"
+                (click)="changeQuantity(1)"
+                [disabled]="quantity() >= item.stock"
+              >
+                +
+              </button>
+            </div>
+
+            <button type="button" class="btn-add" (click)="addToCart()">
+              Agregar al carrito
+            </button>
+          </div>
+        } @else {
+          <button type="button" class="btn-add" disabled>Sin stock disponible</button>
+        }
+
+        @if (addedFeedback()) {
+          <div class="feedback-banner">
+            <span>✓ Agregado al carrito correctamente.</span>
+            <a routerLink="/carrito">Ir al carrito →</a>
+          </div>
+        }
+      </div>
+    </div>
+  } @else {
+    <div class="not-found-card">
+      <h3>Producto no encontrado</h3>
+      <p>El artículo que buscas no existe o fue retirado del catálogo.</p>
+      <a routerLink="/catalogo" class="btn-primary">Explorar productos disponibles</a>
+    </div>
+  }
+</section>

@@ -1,0 +1,36 @@
+<section class="admin-section">
+  <h2>Administración de Pedidos</h2>
+
+  <div class="table-wrapper">
+    <table class="admin-table">
+      <thead>
+        <tr>
+          <th># Pedido</th>
+          <th>Cliente</th>
+          <th>Dirección de entrega</th>
+          <th>Fecha</th>
+          <th>Total</th>
+          <th>Estado</th>
+        </tr>
+      </thead>
+      <tbody>
+        @for (order of orderService.orders(); track order.id) {
+          <tr>
+            <td><strong>#{{ order.id }}</strong></td>
+            <td>{{ order.customerName }}</td>
+            <td>{{ order.address }}</td>
+            <td>{{ order.date }}</td>
+            <td>$ {{ order.total | number:'1.0-0' }}</td>
+            <td>
+              <select [value]="order.status" (change)="onStatusChange(order.id, $event)">
+                <option value="Pendiente">Pendiente</option>
+                <option value="Enviado">Enviado</option>
+                <option value="Entregado">Entregado</option>
+              </select>
+            </td>
+          </tr>
+        }
+      </tbody>
+    </table>
+  </div>
+</section>

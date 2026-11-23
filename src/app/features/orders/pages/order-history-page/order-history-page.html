@@ -1,0 +1,41 @@
+<section class="orders-section">
+  <h2>Mis Pedidos</h2>
+
+  <div class="orders-list">
+    @for (order of orderService.orders(); track order.id) {
+      <article class="order-card">
+        <header class="order-header">
+          <div>
+            <strong>Pedido #{{ order.id }}</strong>
+            <span class="order-date"> · {{ order.date }} · Entrega: {{ order.address }}</span>
+          </div>
+          <span
+            class="badge"
+            [class.shipped]="order.status === 'Enviado'"
+            [class.delivered]="order.status === 'Entregado'"
+          >
+            {{ order.status }}
+          </span>
+        </header>
+
+        <ul class="order-items">
+          @for (item of order.items; track item.productId) {
+            <li>
+              {{ item.quantity }}x {{ item.productName }} — $ {{ item.unitPrice * item.quantity | number:'1.0-0' }}
+            </li>
+          }
+        </ul>
+
+        <footer class="order-footer">
+          <span>Destinatario: {{ order.customerName }}</span>
+          <strong>Total: $ {{ order.total | number:'1.0-0' }}</strong>
+        </footer>
+      </article>
+    } @empty {
+      <div class="empty-state">
+        <p>Aún no has realizado ningún pedido.</p>
+        <a routerLink="/catalogo">Ir a explorar el catálogo</a>
+      </div>
+    }
+  </div>
+</section>
